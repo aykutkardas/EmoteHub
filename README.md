@@ -142,7 +142,7 @@ EmoteHub/
 
 ## Version History
 
-- **v1.0.0**: Initial release
+- **v0.1.0**: Initial release
   - 4x4 emote grid
   - Drag and drop positioning
   - Show/hide commands
