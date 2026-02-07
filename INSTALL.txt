@@ -1,0 +1,117 @@
+EMOTEBAR ADDON - INSTALLATION GUIDE
+===================================
+
+INSTALLATION STEPS:
+==================
+
+1. EXTRACT THE ADDON
+   - Place the entire "EmoteBar" folder in your WoW addons directory:
+   - Path: World of Warcraft\_retail_\Interface\AddOns\EmoteBar
+
+2. VERIFY FILE STRUCTURE
+   Your EmoteBar folder should contain:
+   - EmoteBar.toc
+   - EmoteBar.lua
+   - EmoteBarFrame.xml
+   - README.md
+   - INSTALL.txt (this file)
+   - Textures\ (folder for your custom TGA images)
+
+3. ADD CUSTOM EMOTE ICONS (OPTIONAL)
+   - Create or obtain 32x32 pixel TGA image files
+   - Name them exactly as: wave.tga, hug.tga, dance.tga, etc.
+   - Place ALL TGA files in the EmoteBar\Textures\ folder
+
+   Required TGA files for full functionality:
+   - wave.tga      - hug.tga       - dance.tga     - kiss.tga
+   - flirt.tga     - sit.tga       - sleep.tga     - bow.tga
+   - cheer.tga     - cry.tga       - laugh.tga     - point.tga
+   - salute.tga    - shy.tga       - thank.tga     - yes.tga
+
+4. LAUNCH WORLD OF WARCRAFT
+   - Start WoW normally
+   - At character selection, click "AddOns" button
+   - Find "EmoteBar" in the list and ensure it's CHECKED
+   - Click "Okay" and log in to your character
+
+5. FIRST USE
+   - EmoteBar will appear in the center of your screen
+   - Left-click and drag to move it anywhere
+   - Use /emotebar or /eb to toggle visibility
+
+COMMANDS:
+=========
+/emotebar        - Toggle EmoteBar on/off
+/eb              - Same as above (short version)
+/emotebar show   - Show EmoteBar
+/emotebar hide   - Hide EmoteBar
+/emotebar reset  - Reset position to center screen
+
+CREATING CUSTOM TGA IMAGES:
+===========================
+
+OPTION 1 - Using GIMP (Free):
+1. Create new 32x32 image
+2. Design your icon
+3. File -> Export As -> filename.tga
+4. Select "24 bits" or "32 bits"
+5. Save to EmoteBar\Textures\
+
+OPTION 2 - Using Paint.NET (Free):
+1. Create new 32x32 image
+2. Design your icon
+3. File -> Save As -> TGA format
+4. Save to EmoteBar\Textures\
+
+OPTION 3 - Extract from WoW:
+Use tools like WoW Model Viewer to extract existing game icons
+
+TROUBLESHOOTING:
+===============
+
+PROBLEM: Addon doesn't appear in AddOns list
+SOLUTION:
+- Check folder name is exactly "EmoteBar"
+- Verify EmoteBar.toc file exists
+- Restart WoW completely
+
+PROBLEM: EmoteBar doesn't show after login
+SOLUTION:
+- Type /emotebar show in chat
+- Check if addon is enabled in AddOns menu
+- Try /reload to restart UI
+
+PROBLEM: Icons show as question marks
+SOLUTION:
+- Verify TGA files are in EmoteBar\Textures\ folder
+- Check file names match exactly (case sensitive)
+- Ensure TGA format is 24-bit or 32-bit uncompressed
+- Restart WoW after adding new textures
+
+PROBLEM: Buttons don't work when clicked
+SOLUTION:
+- This is normal - buttons work via secure templates
+- Make sure you're not in combat when testing
+- Try right-click if left-click doesn't work
+
+PROBLEM: EmoteBar disappeared
+SOLUTION:
+- Type /emotebar show
+- If that doesn't work, try /emotebar reset
+
+SUPPORT:
+========
+For additional help:
+- Read the README.md file for detailed information
+- Check WoW addon communities and forums
+- Verify your WoW version matches the addon (retail/classic)
+
+CUSTOMIZATION:
+==============
+Advanced users can modify EmoteBar.lua to:
+- Change which emotes appear on buttons
+- Adjust button size and spacing
+- Modify colors and appearance
+- Add more complex macro commands
+
+Always backup your changes before modifying files!
