@@ -1,9 +1,9 @@
--- EmoteBar.lua
--- Main addon file for EmoteBar
+-- EmoteHub.lua
+-- Main addon file for EmoteHub
 -- A customizable 4x4 emote action bar for World of Warcraft
 
 -- Addon namespace
-EmoteBar = EmoteBar or {}
+EmoteHub = EmoteHub or {}
 
 -- Local variables
 local frame = nil
@@ -13,22 +13,22 @@ local toggleButton = nil
 
 -- Default emotes list (16 emotes for 4x4 grid) with game icon fallbacks
 local defaultEmotes = {
-    { name = "Wave",   command = "/wave",   icon = "Interface\\AddOns\\EmoteBar\\Textures\\wave",   fallback = "Interface\\Icons\\Ability_Warrior_RallyingCry" },
-    { name = "Hug",    command = "/hug",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\hug",    fallback = "Interface\\Icons\\Spell_Holy_GreaterHeal" },
-    { name = "Dance",  command = "/dance",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\dance",  fallback = "Interface\\Icons\\INV_Misc_Drum_05" },
-    { name = "Kiss",   command = "/kiss",   icon = "Interface\\AddOns\\EmoteBar\\Textures\\kiss",   fallback = "Interface\\Icons\\INV_Misc_Food_24" },
-    { name = "Flirt",  command = "/flirt",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\flirt",  fallback = "Interface\\Icons\\INV_Misc_Flower_04" },
-    { name = "Sit",    command = "/sit",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\sit",    fallback = "Interface\\Icons\\Ability_Mount_MountainRam" },
-    { name = "Sleep",  command = "/sleep",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\sleep",  fallback = "Interface\\Icons\\Spell_Nature_Sleep" },
-    { name = "Bow",    command = "/bow",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\bow",    fallback = "Interface\\Icons\\Ability_Warrior_DefensiveStance" },
-    { name = "Cheer",  command = "/cheer",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\cheer",  fallback = "Interface\\Icons\\Spell_Holy_BlessingOfStamina" },
-    { name = "Cry",    command = "/cry",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\cry",    fallback = "Interface\\Icons\\Spell_Frost_ChillingBlast" },
-    { name = "Laugh",  command = "/laugh",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\laugh",  fallback = "Interface\\Icons\\INV_Misc_Food_41" },
-    { name = "Point",  command = "/point",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\point",  fallback = "Interface\\Icons\\Ability_Hunter_MarkedForDeath" },
-    { name = "Salute", command = "/salute", icon = "Interface\\AddOns\\EmoteBar\\Textures\\salute", fallback = "Interface\\Icons\\INV_Banner_03" },
-    { name = "Shy",    command = "/shy",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\shy",    fallback = "Interface\\Icons\\Ability_Rogue_Vanish" },
-    { name = "Thank",  command = "/thank",  icon = "Interface\\AddOns\\EmoteBar\\Textures\\thank",  fallback = "Interface\\Icons\\Spell_Holy_Heal" },
-    { name = "Yes",    command = "/yes",    icon = "Interface\\AddOns\\EmoteBar\\Textures\\yes",    fallback = "Interface\\Icons\\Ability_Warrior_Revenge" }
+    { name = "Wave",   command = "/wave",   icon = "Interface\\AddOns\\EmoteHub\\Textures\\wave",   fallback = "Interface\\Icons\\Ability_Warrior_RallyingCry" },
+    { name = "Hug",    command = "/hug",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\hug",    fallback = "Interface\\Icons\\Spell_Holy_GreaterHeal" },
+    { name = "Dance",  command = "/dance",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\dance",  fallback = "Interface\\Icons\\INV_Misc_Drum_05" },
+    { name = "Kiss",   command = "/kiss",   icon = "Interface\\AddOns\\EmoteHub\\Textures\\kiss",   fallback = "Interface\\Icons\\INV_Misc_Food_24" },
+    { name = "Flirt",  command = "/flirt",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\flirt",  fallback = "Interface\\Icons\\INV_Misc_Flower_04" },
+    { name = "Sit",    command = "/sit",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\sit",    fallback = "Interface\\Icons\\Ability_Mount_MountainRam" },
+    { name = "Sleep",  command = "/sleep",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\sleep",  fallback = "Interface\\Icons\\Spell_Nature_Sleep" },
+    { name = "Bow",    command = "/bow",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\bow",    fallback = "Interface\\Icons\\Ability_Warrior_DefensiveStance" },
+    { name = "Cheer",  command = "/cheer",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\cheer",  fallback = "Interface\\Icons\\Spell_Holy_BlessingOfStamina" },
+    { name = "Cry",    command = "/cry",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\cry",    fallback = "Interface\\Icons\\Spell_Frost_ChillingBlast" },
+    { name = "Laugh",  command = "/laugh",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\laugh",  fallback = "Interface\\Icons\\INV_Misc_Food_41" },
+    { name = "Point",  command = "/point",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\point",  fallback = "Interface\\Icons\\Ability_Hunter_MarkedForDeath" },
+    { name = "Salute", command = "/salute", icon = "Interface\\AddOns\\EmoteHub\\Textures\\salute", fallback = "Interface\\Icons\\INV_Banner_03" },
+    { name = "Shy",    command = "/shy",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\shy",    fallback = "Interface\\Icons\\Ability_Rogue_Vanish" },
+    { name = "Thank",  command = "/thank",  icon = "Interface\\AddOns\\EmoteHub\\Textures\\thank",  fallback = "Interface\\Icons\\Spell_Holy_Heal" },
+    { name = "Yes",    command = "/yes",    icon = "Interface\\AddOns\\EmoteHub\\Textures\\yes",    fallback = "Interface\\Icons\\Ability_Warrior_Revenge" }
 }
 
 -- Default saved variables
@@ -82,33 +82,33 @@ end
 
 -- Initialize saved variables
 local function InitializeSavedVars()
-    EmoteBarDB = EmoteBarDB or {}
+    EmoteHubDB = EmoteHubDB or {}
 
     -- Merge defaults with saved data
     for key, value in pairs(defaultSettings) do
-        if EmoteBarDB[key] == nil then
-            EmoteBarDB[key] = value
+        if EmoteHubDB[key] == nil then
+            EmoteHubDB[key] = value
         end
     end
 
     -- Handle nested tables
-    if type(EmoteBarDB.position) ~= "table" then
-        EmoteBarDB.position = defaultSettings.position
+    if type(EmoteHubDB.position) ~= "table" then
+        EmoteHubDB.position = defaultSettings.position
     else
         for key, value in pairs(defaultSettings.position) do
-            if EmoteBarDB.position[key] == nil then
-                EmoteBarDB.position[key] = value
+            if EmoteHubDB.position[key] == nil then
+                EmoteHubDB.position[key] = value
             end
         end
     end
 
     -- Handle toggle button position
-    if type(EmoteBarDB.toggleButtonPosition) ~= "table" then
-        EmoteBarDB.toggleButtonPosition = defaultSettings.toggleButtonPosition
+    if type(EmoteHubDB.toggleButtonPosition) ~= "table" then
+        EmoteHubDB.toggleButtonPosition = defaultSettings.toggleButtonPosition
     else
         for key, value in pairs(defaultSettings.toggleButtonPosition) do
-            if EmoteBarDB.toggleButtonPosition[key] == nil then
-                EmoteBarDB.toggleButtonPosition[key] = value
+            if EmoteHubDB.toggleButtonPosition[key] == nil then
+                EmoteHubDB.toggleButtonPosition[key] = value
             end
         end
     end
@@ -120,9 +120,9 @@ local function CreateMainFrame()
         return frame
     end
 
-    frame = CreateFrame("Frame", "EmoteBarMainFrame", UIParent)
-    local buttonSize = EmoteBarDB.buttonSize or 40
-    local spacing = EmoteBarDB.spacing or 2
+    frame = CreateFrame("Frame", "EmoteHubMainFrame", UIParent)
+    local buttonSize = EmoteHubDB.buttonSize or 40
+    local spacing = EmoteHubDB.spacing or 2
     local frameWidth = (4 * buttonSize) + (3 * spacing)  -- 4 buttons + 3 spaces between
     local frameHeight = (4 * buttonSize) + (3 * spacing) -- 4 buttons + 3 spaces between
     frame:SetSize(frameWidth, frameHeight)
@@ -139,7 +139,7 @@ end
 local function CreateToggleButton()
     if toggleButton then return toggleButton end
 
-    toggleButton = CreateFrame("Button", "EmoteBarToggleButton", UIParent)
+    toggleButton = CreateFrame("Button", "EmoteHubToggleButton", UIParent)
     toggleButton:SetSize(40, 40)
     toggleButton:SetPoint("CENTER", UIParent, "CENTER", -200, 0) -- Position it left of center
     toggleButton:EnableMouse(true)
@@ -152,7 +152,7 @@ local function CreateToggleButton()
     -- Button icon (custom icon.tga) - no background
     toggleButton.icon = toggleButton:CreateTexture(nil, "ARTWORK")
     toggleButton.icon:SetAllPoints(true)
-    toggleButton.icon:SetTexture("Interface\\AddOns\\EmoteBar\\Textures\\icon") -- Use custom icon.tga
+    toggleButton.icon:SetTexture("Interface\\AddOns\\EmoteHub\\Textures\\icon") -- Use custom icon.tga
 
     -- Hover highlight
     toggleButton.highlight = toggleButton:CreateTexture(nil, "HIGHLIGHT")
@@ -162,10 +162,10 @@ local function CreateToggleButton()
     -- Enable left-click
     toggleButton:RegisterForClicks("LeftButtonUp")
 
-    -- Click handler - execute /eb command directly
+    -- Click handler - execute /eh command directly
     toggleButton:SetScript("OnClick", function(self, mouseButton)
-        -- Execute the slash command directly like typing /eb in chat
-        SlashCmdList["EMOTEBAR"]("")
+        -- Execute the slash command directly like typing /eh in chat
+        SlashCmdList["EMOTEHUB"]("")
     end)
 
     -- Drag handler (right-click to move)
@@ -176,7 +176,7 @@ local function CreateToggleButton()
         self:StopMovingOrSizing()
         -- Save position
         local point, _, relativePoint, xOfs, yOfs = self:GetPoint()
-        EmoteBarDB.toggleButtonPosition = {
+        EmoteHubDB.toggleButtonPosition = {
             point = point or "CENTER",
             relativePoint = relativePoint or "CENTER",
             xOfs = xOfs or -200,
@@ -189,8 +189,8 @@ local function CreateToggleButton()
     -- Tooltip
     toggleButton:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText("EmoteBar Toggle", 1, 1, 1)
-        GameTooltip:AddLine("Left-click: Show/Hide EmoteBar", 0.8, 0.8, 0.8)
+        GameTooltip:SetText("EmoteHub Toggle", 1, 1, 1)
+        GameTooltip:AddLine("Left-click: Show/Hide EmoteHub", 0.8, 0.8, 0.8)
         GameTooltip:AddLine("Right-click drag: Move button", 0.8, 0.8, 0.8)
         GameTooltip:Show()
     end)
@@ -204,9 +204,9 @@ end
 
 -- Restore toggle button position
 local function RestoreToggleButtonPosition()
-    if not toggleButton or not EmoteBarDB.toggleButtonPosition then return end
+    if not toggleButton or not EmoteHubDB.toggleButtonPosition then return end
 
-    local pos = EmoteBarDB.toggleButtonPosition
+    local pos = EmoteHubDB.toggleButtonPosition
     toggleButton:ClearAllPoints()
     toggleButton:SetPoint(pos.point, UIParent, pos.relativePoint, pos.xOfs, pos.yOfs)
 end
@@ -215,12 +215,12 @@ end
 local function CreateButtons()
     if not frame then return end
 
-    local buttonSize = EmoteBarDB.buttonSize or 40
-    local spacing = EmoteBarDB.spacing or 2
+    local buttonSize = EmoteHubDB.buttonSize or 40
+    local spacing = EmoteHubDB.spacing or 2
 
     for i = 1, 16 do
         -- Create simple button
-        local button = CreateFrame("Button", "EmoteBarButton" .. i, frame)
+        local button = CreateFrame("Button", "EmoteHubButton" .. i, frame)
         button:SetSize(buttonSize, buttonSize)
 
         -- Calculate grid position (4x4) - no padding, tight grid
@@ -322,7 +322,7 @@ local function SetVisibility(visible)
     if not frame then return end
 
     isVisible = visible
-    EmoteBarDB.isVisible = visible
+    EmoteHubDB.isVisible = visible
 
     if visible then
         frame:Show()
@@ -350,17 +350,17 @@ local function Initialize()
     PositionFrameAboveToggle()
 
     -- Set initial visibility
-    isVisible = EmoteBarDB.isVisible
+    isVisible = EmoteHubDB.isVisible
     if isVisible == nil then isVisible = true end
     SetVisibility(isVisible)
 
     -- Set scale and alpha
     if frame then
-        frame:SetScale(EmoteBarDB.scale or 1.0)
-        frame:SetAlpha(EmoteBarDB.alpha or 1.0)
+        frame:SetScale(EmoteHubDB.scale or 1.0)
+        frame:SetAlpha(EmoteHubDB.alpha or 1.0)
     end
 
-    -- EmoteBar loaded silently
+    -- EmoteHub loaded silently
 end
 
 -- Slash command handler
@@ -380,31 +380,31 @@ local function HandleSlashCommand(msg)
             SavePosition()
         end
     elseif command == "help" or command == "?" then
-        print("|cFF00FF00EmoteBar|r Commands:")
-        print("  |cFFFFFF00/emotebar|r or |cFFFFFF00/eb|r - Toggle visibility")
-        print("  |cFFFFFF00/emotebar show|r - Show EmoteBar")
-        print("  |cFFFFFF00/emotebar hide|r - Hide EmoteBar")
-        print("  |cFFFFFF00/emotebar reset|r - Reset position")
-        print("  |cFFFFFF00/emotebar help|r - Show this help")
+        print("|cFF00FF00EmoteHub|r Commands:")
+        print("  |cFFFFFF00/emotehub|r or |cFFFFFF00/eh|r - Toggle visibility")
+        print("  |cFFFFFF00/emotehub show|r - Show EmoteHub")
+        print("  |cFFFFFF00/emotehub hide|r - Hide EmoteHub")
+        print("  |cFFFFFF00/emotehub reset|r - Reset position")
+        print("  |cFFFFFF00/emotehub help|r - Show this help")
     else
         -- Silent for unknown commands
     end
 end
 
 -- Register slash commands
-SLASH_EMOTEBAR1 = "/emotebar"
-SLASH_EMOTEBAR2 = "/eb"
-SlashCmdList["EMOTEBAR"] = HandleSlashCommand
+SLASH_EMOTEHUB1 = "/emotehub"
+SLASH_EMOTEHUB2 = "/eh"
+SlashCmdList["EMOTEHUB"] = HandleSlashCommand
 
 -- Event frame for initialization
-local eventFrame = CreateFrame("Frame", "EmoteBarEventFrame")
+local eventFrame = CreateFrame("Frame", "EmoteHubEventFrame")
 
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 eventFrame:SetScript("OnEvent", function(self, event, arg1)
-    if event == "ADDON_LOADED" and arg1 == "EmoteBar" then
+    if event == "ADDON_LOADED" and arg1 == "EmoteHub" then
         -- Addon loaded, saved variables are available
         InitializeSavedVars()
     elseif event == "PLAYER_LOGIN" then
@@ -424,10 +424,10 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
 end)
 
 -- Global functions for external access
-EmoteBar.Toggle = ToggleVisibility
-EmoteBar.Show = function() SetVisibility(true) end
-EmoteBar.Hide = function() SetVisibility(false) end
-EmoteBar.Reset = function()
+EmoteHub.Toggle = ToggleVisibility
+EmoteHub.Show = function() SetVisibility(true) end
+EmoteHub.Hide = function() SetVisibility(false) end
+EmoteHub.Reset = function()
     if frame then
         frame:ClearAllPoints()
         frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)

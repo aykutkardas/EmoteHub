@@ -1,0 +1,78 @@
+<Ui
+    xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd"
+>
+
+    <!-- Invisible EmoteHub Frame Template - no background -->
+    <Frame name="EmoteHubFrameTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="170" y="170" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+
+        <!-- No layers - invisible frame -->
+
+        <Scripts>
+            <OnLoad>
+                self:RegisterForDrag("LeftButton");
+                self:SetMovable(true);
+                self:SetClampedToScreen(true);
+            </OnLoad>
+            <OnDragStart>
+                if self:IsMovable() then
+                    self:StartMoving();
+                end
+            </OnDragStart>
+            <OnDragStop>
+                self:StopMovingOrSizing();
+                if EmoteHub and EmoteHub.SavePosition then
+                    EmoteHub.SavePosition();
+                end
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
+    <!-- Emote Button Template -->
+    <Button name="EmoteButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="40" y="40" />
+        </Size>
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentNormalTexture" setAllPoints="true">
+                    <Color r="0.2" g="0.2" b="0.2" a="0.8" />
+                </Texture>
+            </Layer>
+            <Layer level="HIGHLIGHT">
+                <Texture name="$parentHighlight" setAllPoints="true">
+                    <Color r="0.4" g="0.4" b="0.4" a="0.5" />
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentIcon" setAllPoints="true">
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnEnter>
+                if self.emoteName then
+                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                    GameTooltip:SetText(self.emoteName, 1, 1, 1);
+                    if self.emoteCommand then
+                        GameTooltip:AddLine(self.emoteCommand, 0.8, 0.8, 0.8);
+                    end
+                    GameTooltip:Show();
+                end
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+        </Scripts>
+    </Button>
+
+</Ui>

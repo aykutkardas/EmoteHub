@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd"
 >
 
-    <!-- Invisible EmoteBar Frame Template - no background -->
-    <Frame name="EmoteBarFrameTemplate" virtual="true">
+    <!-- Invisible EmoteHub Frame Template - no background -->
+    <Frame name="EmoteHubFrameTemplate" virtual="true">
         <Size>
             <AbsDimension x="170" y="170" />
         </Size>
@@ -28,8 +28,8 @@
             </OnDragStart>
             <OnDragStop>
                 self:StopMovingOrSizing();
-                if EmoteBar and EmoteBar.SavePosition then
-                    EmoteBar.SavePosition();
+                if EmoteHub and EmoteHub.SavePosition then
+                    EmoteHub.SavePosition();
                 end
             </OnDragStop>
         </Scripts>

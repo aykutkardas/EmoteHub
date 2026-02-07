@@ -4,11 +4,11 @@
 ## Interface-BCC: 20505
 ## Interface-Wrath: 30403
 ## Interface-Cata: 40400
-## Title: EmoteBar
+## Title: EmoteHub
 ## Notes: A floating 4x4 emote grid with draggable toggle button for World of Warcraft
 ## Author: mnzv
 ## Version: 0.1.0
-## SavedVariables: EmoteBarDB
+## SavedVariables: EmoteHubDB
 ## DefaultState: enabled
 ## X-Category: Interface Enhancements
 ## X-Compatible: Retail, Classic, BCC, Wrath, Cata
@@ -16,5 +16,5 @@
 ## X-Max-Interface: 129999
 ## LoadOnDemand: 0
 
-EmoteBar.lua
-EmoteBarFrame.xml
+EmoteHub.lua
+EmoteHubFrame.xml
