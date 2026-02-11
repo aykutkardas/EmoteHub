@@ -1,14 +1,16 @@
 # EmoteHub - World of Warcraft Addon
 
-A customizable 4x4 emote action bar addon for World of Warcraft that allows you to quickly access your favorite emotes with custom icons.
+A customizable emote action bar addon for World of Warcraft that allows you to quickly access your favorite emotes with custom icons. Features multiple layout options including flexible grid sizes, horizontal linear, and vertical linear arrangements.
 
 ## Features
 
-- 4x4 grid of emote buttons (16 total)
+- 16 emote buttons plus integrated toggle button
+- Three layout options: flexible grid, horizontal linear (1x17), or vertical linear (17x1)
 - Drag and drop to reposition the frame
 - Show/hide with slash commands
-- Custom TGA texture support for emote icons
-- Persistent position and visibility settings
+
+- Persistent position, visibility, and layout settings
+- Always-visible toggle button for easy access
 - Hover tooltips showing emote names and commands
 
 ## Installation
@@ -26,7 +28,16 @@ A customizable 4x4 emote action bar addon for World of Warcraft that allows you 
 - `/emotehub show` - Show the EmoteHub
 - `/emotehub hide` - Hide the EmoteHub
 - `/emotehub reset` - Reset EmoteHub position to center
-- `/emotehub` (without arguments) - Show available commands
+- `/emotehub grid` - Switch to grid layout (default 4 columns)
+- `/emotehub grid <number>` - Set grid with specific columns (1-17, e.g. `/emotehub grid 5`)
+- `/emotehub horizontal` - Switch to horizontal linear layout (1x17)
+- `/emotehub vertical` - Switch to vertical linear layout (17x1)
+- `/emotehub layout` - Show current layout setting
+- `/emotehub small` - Set small button size (32px)
+- `/emotehub normal` - Set normal button size (36px, default)
+- `/emotehub large` - Set large button size (40px)
+- `/emotehub size` - Show current button size
+- `/emotehub help` - Show available commands
 
 ## Default Emotes
 
@@ -49,71 +60,108 @@ The addon comes with 16 pre-configured emotes:
 15. Thank (`/thank`)
 16. Yes (`/yes`)
 
-## Adding Custom TGA Icons
 
-To use your own custom emote icons:
+## Layout Options
 
-1. Create your TGA image files (32x32 pixels recommended for best quality)
-2. Save them in the `EmoteHub\Textures\` folder
-3. Name your files to match the emotes (e.g., `wave.tga`, `hug.tga`, etc.)
+EmoteHub supports three different layout modes:
 
-### Required TGA Files:
+### Grid Layout (Default)
+- **Flexible grid**: Customize columns from 1-17 (default 4 columns)
+- **Toggle integration**: Toggle button appears as the last item in the grid
+- **Examples**: 
+  - 4x5 grid (4 columns): `/emotehub grid 4`
+  - 5x4 grid (5 columns): `/emotehub grid 5` 
+  - 3x6 grid (3 columns): `/emotehub grid 3`
+- **Best for**: Customizable arrangement to fit your screen and preferences
+- **Commands**: `/emotehub grid` or `/emotehub grid <columns>`
 
-Place these TGA files in the `EmoteHub\Textures\` folder:
+### Horizontal Linear Layout
+- **1x17 arrangement**: All buttons including toggle in a single horizontal row
+- **Toggle position**: Toggle button is the first (leftmost) element
+- **Best for**: Placement at top or bottom of screen, horizontal screen edges
+- **Command**: `/emotehub horizontal`
 
-- `wave.tga`
-- `hug.tga`
-- `dance.tga`
-- `kiss.tga`
-- `flirt.tga`
-- `sit.tga`
-- `sleep.tga`
-- `bow.tga`
-- `cheer.tga`
-- `cry.tga`
-- `laugh.tga`
-- `point.tga`
-- `salute.tga`
-- `shy.tga`
-- `thank.tga`
-- `yes.tga`
+### Vertical Linear Layout
+- **17x1 arrangement**: All buttons including toggle in a single vertical column
+- **Toggle position**: Toggle button is the first (topmost) element  
+- **Best for**: Placement at left or right side of screen, vertical screen edges
+- **Command**: `/emotehub vertical`
 
-### TGA Format Requirements:
+### Switching Layouts
+- Use the slash commands above to change layouts instantly
+- Layout preference and grid size are automatically saved
+- **Toggle Button Integration** (always visible):
+  - **Grid Layout**: Toggle button appears as the last item in the grid (stays visible when actions are hidden)
+  - **Horizontal Layout**: Toggle button is the first (leftmost) element
+  - **Vertical Layout**: Toggle button is the first (topmost) element
 
-- Format: TGA (Targa)
-- Recommended size: 32x32 pixels
-- Color depth: 24-bit or 32-bit (with alpha channel for transparency)
-- Compression: Uncompressed or RLE compressed
+## Button Sizing
 
-## Customizing Emotes
+EmoteHub supports three button size options:
 
-To customize which emotes appear on the buttons:
+### Size Options
+- **Small (32px)**: Compact buttons that save screen space, good for fitting many buttons
+- **Normal (36px)**: Default balanced size for good visibility and reasonable space usage
+- **Large (40px)**: Larger buttons that are more visible and easier to click
 
-1. Open `EmoteHub.lua` in a text editor
-2. Find the `EmoteHub.emotes` table (around line 10)
-3. Modify the emote entries:
-   - `name`: Display name for tooltip
-   - `command`: The slash command to execute
-   - `icon`: Path to the TGA texture file
+### Size Commands
+- `/emotehub small` - Switch to small buttons (32px)
+- `/emotehub normal` - Switch to normal buttons (36px, default)
+- `/emotehub large` - Switch to large buttons (40px)
+- `/emotehub size` - Show current button size
 
-Example:
-```lua
-{ name = "Custom", command = "/custom", icon = "Interface\\AddOns\\EmoteHub\\Textures\\custom.tga" }
-```
+### Size Management
+- Button size changes are applied instantly across all layouts
+- Size preference is automatically saved
+- All layouts (grid, horizontal, vertical) use the same button size
+- Toggle button always matches the action button size
 
 ## Positioning
 
-- **Drag to Move**: Left-click and drag the EmoteHub to reposition it
-- **Auto-Save**: Position is automatically saved when you stop dragging
+**Important**: The toggle button is always visible regardless of whether the action buttons are shown or hidden.
+
+### All Layouts - Universal Dragging
+- **Toggle Button Dragging**: Right-click and drag the toggle button to move the entire EmoteHub anywhere on screen
+- **Frame Dragging**: Left-click and drag anywhere on the action buttons frame (all layouts)
+- **Always Available**: Toggle button remains visible even when action buttons are hidden
+
+### Grid Layout (Flexible)
+- **Toggle Integration**: Toggle button is the last item in the grid arrangement
+- **Always Visible**: Toggle button remains visible even when action buttons are hidden
+- **Flexible Sizing**: Supports 1-17 columns (affects grid shape)
+- **Movement**: Right-click drag toggle button or left-click drag frame to move everything
+- **Auto-Save**: Frame position is automatically saved when you stop dragging
+
+### Horizontal/Vertical Layouts  
+- **Integrated Design**: Toggle button becomes the first element of the action bar
+- **Dual Drag Options**: 
+  - Right-click drag the toggle button to move the entire bar
+  - Left-click drag anywhere on the frame to move the entire bar
+- **Unity**: Toggle button and action buttons move together as one unit
+
+### General
+- **Auto-Save**: Frame position is automatically saved when you stop dragging
+- **Persistent Position**: Position is saved to your character's saved variables and persists across /reload and game restarts
 - **Reset Position**: Use `/emotehub reset` to return to center screen
 
 ## Troubleshooting
 
-### Icons Not Showing
-1. Ensure TGA files are in the correct folder: `EmoteHub\Textures\`
-2. Check file names match exactly (case-sensitive)
-3. Verify TGA format is correct (uncompressed 24/32-bit)
-4. Restart WoW after adding new texture files
+
+### Layout Issues
+1. If layout changes don't apply immediately, try `/reload` to refresh the addon
+2. Long horizontal/vertical layouts may extend off-screen on smaller resolutions
+3. Use `/emotehub reset` after changing layouts to reposition if needed
+4. **Position Reset Issues**: 
+   - If position resets on /reload, try moving the frame and it should save properly
+   - Position is saved to EmoteHubDB in your WTF folder
+   - Use `/emotehub reset` to intentionally reset to center
+5. **Dragging Issues**: 
+   - All layouts: Right-click drag the toggle button to move EmoteHub
+   - Horizontal/Vertical: Also supports left-click drag anywhere on the frame
+   - If dragging doesn't work, try clicking directly on the toggle button
+6. **Toggle Button Visibility**: 
+   - Grid layout: Toggle button stays visible when actions are hidden for easy re-access
+   - Linear layouts: Toggle button is part of the visible bar
 
 ### Addon Not Loading
 1. Check that the folder is named exactly `EmoteHub`
@@ -127,26 +175,31 @@ Example:
 
 ## File Structure
 
-```
 EmoteHub/
 ├── EmoteHub.toc          # Addon metadata
 ├── EmoteHub.lua          # Main addon logic
-├── EmoteHubFrame.xml     # UI frame definitions
 ├── README.md             # This file
-└── Textures/             # Custom TGA icon folder
-    ├── wave.tga
-    ├── hug.tga
-    ├── dance.tga
-    └── ... (other emote icons)
-```
+└── Textures/             # Icon folder
 
 ## Version History
+
+- **v0.1.1**: Layout Options Update
+  - Added horizontal linear layout (1x17)
+  - Added vertical linear layout (17x1)
+  - Layout switching commands
+  - Persistent layout settings
+  - Toggle button always visible functionality
+  - Updated help system
+  - Changed default button size to 36px (from 40px)
+  - Added button size commands: small (32px), normal (36px), large (40px)
+  - Button size changes apply instantly to all layouts
+  - Enhanced customization options
+  - Improved space efficiency with smaller default size
 
 - **v0.1.0**: Initial release
   - 4x4 emote grid
   - Drag and drop positioning
   - Show/hide commands
-  - Custom TGA texture support
   - Saved settings
 
 ## Support

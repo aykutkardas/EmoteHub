@@ -17,4 +17,5 @@
 ## LoadOnDemand: 0
 
 EmoteHub.lua
-EmoteHubFrame.xml
+EmoteHub_Options.lua
+
