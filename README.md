@@ -182,6 +182,8 @@ EmoteHub/
 └── Textures/             # Icon folder
 
 ## Version History
+- **v0.1.2**: Layout Options Update
+  - Mist of Pandaria Classic support added
 
 - **v0.1.1**: Layout Options Update
   - Added horizontal linear layout (1x17)

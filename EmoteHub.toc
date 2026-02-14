@@ -7,7 +7,7 @@
 ## Title: EmoteHub
 ## Notes: A floating 4x4 emote grid with draggable toggle button for World of Warcraft
 ## Author: mnzv
-## Version: 0.1.0
+## Version: 0.1.2
 ## SavedVariables: EmoteHubDB
 ## DefaultState: enabled
 ## X-Category: Interface Enhancements
@@ -18,4 +18,3 @@
 
 EmoteHub.lua
 EmoteHub_Options.lua
-
